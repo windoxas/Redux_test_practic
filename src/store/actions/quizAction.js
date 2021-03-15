@@ -6,7 +6,8 @@ import {
     FETCH_QUIZ_SUCCESS,
     QUIZ_SET_STATE,
     FINISH_QUIZ,
-    QUIZ_NEXT_QUESTION
+    QUIZ_NEXT_QUESTION,
+    QUIZ_RETRY
 } from './actionTypes'
 export default function fetchQuizes() {
     return async (dispatch) => {
@@ -111,6 +112,11 @@ export function quizAnswerClick(answerId) {
     }
 }
 
+export function retryQuiz(){
+    return{
+        type:QUIZ_RETRY
+    }
+}
 
 function isQuizFinished (state){
     return state.activeQuestion + 1 === state.quiz.length
