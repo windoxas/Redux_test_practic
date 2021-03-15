@@ -84,6 +84,7 @@ export function quizAnswerClick(answerId) {
         }
 
         const question = state.quiz[state.activeQuestion]
+        console.log(question);
         const results = state.results
 
         if (question.rightAnswerId === answerId) {
@@ -94,7 +95,7 @@ export function quizAnswerClick(answerId) {
 
 
             const timeout = window.setTimeout(() => {
-                if (isQuizFinished()) {
+                if (isQuizFinished(state)) {
                     dispatch(finishQuiz())
 
                 } else {
@@ -111,7 +112,9 @@ export function quizAnswerClick(answerId) {
 }
 
 
-function isQuizFinished (){}
+function isQuizFinished (state){
+    return state.activeQuestion + 1 === state.quiz.length
+}
 
 export function fetchQuizById(quizId) {
     return async (dispatch) => {
